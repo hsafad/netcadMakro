@@ -1,0 +1,45 @@
+'Hüseyin Safa DUMAN
+'Tarih 22.06.2024 11:42:45
+'Projeksiyon tanýmlama
+'ITRF ise ED50 ITRF deðilse ITRF 3 Derece 39 DOM olarak ayarlar.
+
+Sub Main
+	dim pc, prjk, dtm, DtmType, metin
+	with Netcad
+	.FindWorld 
+      
+    set prjk = .NewProjection
+    prjk.GetFromCurrentProject
+	
+	dtm = prjk.Datum
+	
+	Select Case dtm
+	Case 1
+		DtmType = 4
+		metin = "Projeksiyon ED50, 3*, DOM = 39 olarak tanýmlandý."
+	Case else
+		DtmType = 1
+		metin = "ITRF 96, 3*, DOM = 39 olarak tanýmlandý."
+	End Select	
+
+	Call ProjeksiyonTanimla(DtmType, metin)
+
+	End with
+End Sub
+
+
+
+Function ProjeksiyonTanimla(dtmTip, metin)
+	Dim pc
+	with Netcad		
+		set pc = Netcad.NewProjection  
+		pc.ProjectionType = 3
+		pc.Datum = dtmTip
+		pc.Zone = 39
+		pc.SetToCurrentProject True
+		msgBox metin, 0
+		End with
+End Function
+
+
+
