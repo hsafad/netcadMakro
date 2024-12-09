@@ -1,6 +1,6 @@
-'Yazan Hüseyin Safa DUMAN
+'Yazan HÃ¼seyin Safa DUMAN
 'Tarih 22.04.2024 18:25:49
-'Aciklama Ham Data katmanların otomatik oluşturulması.
+'Aciklama Ham Data katmanlarÃ½n otomatik oluÃ¾turulmasÃ½.
 
 Sub Main
 	Call hamTabaka()
