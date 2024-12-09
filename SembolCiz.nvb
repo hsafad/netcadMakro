@@ -1,0 +1,66 @@
+'Hüseyin Safa DUMAN
+'Tarih 21.06.2024 12:56:45
+'Sembol çizimi 
+
+Sub Main
+	Call sembolCiz
+End Sub
+
+Sub sembolCiz()
+Dim i, nok, nokKod, y,x, sembol, tabakaAd, symNum
+	with Netcad
+		.SetFilter nothing, Array(), Array(opoint)
+		Call hamTabaka
+		
+		Do
+		
+			set nok = .GetNextObject 
+			If nok is nothing Then Exit Do
+			
+			nokKod = UCASE(nok.pcode)
+			y = nok.p1.y
+			x = nok.p1.x
+			set sembol = nothing
+			
+			Select Case nokKod
+			Case "ED" 
+				tabakaAd = "D_DIREK_ELEKTRIK"
+				symNum = 6	
+				set sembol = .MakeSembol (.newc(y,x,0), symNum, 0, 1, 0, .CreateLayer (tabakaAd, 16))
+				.AddObject (sembol)	
+			Case "TD"
+				tabakaAd = "D_DIREK_TELEFON"
+				symNum = 7
+				set sembol = .MakeSembol (.newc(y,x,0), symNum, 0, 1, 0, .CreateLayer (tabakaAd, 16))
+				.AddObject (sembol)	
+			Case "AD"
+				tabakaAd = "D_DIREK_AYDINLATMA"
+				symNum = 9
+				set sembol = .MakeSembol (.newc(y,x,0), symNum, 0, 1, 0, .CreateLayer (tabakaAd, 16))
+				.AddObject (sembol)	
+			Case "RGR"
+				tabakaAd = "D_ROGAR"
+				symNum = 15
+				set sembol = .MakeSembol (.newc(y,x,0), symNum, 0, 1, 0, .CreateLayer (tabakaAd, 16))
+				.AddObject (sembol)	
+			Case Else 
+			end select 	
+		Loop
+	end with
+End Sub
+
+Function hamTabaka()
+	Dim hamTBK(5), i
+	with Netcad
+		
+		hamTBK(1) = "@D"
+		hamTBK(2) = "D_DIREK_ELEKTRIK"
+		hamTBK(3) = "D_DIREK_AYDINLATMA"
+		hamTBK(4) = "D_DIREK_TELEFON"
+		hamTBK(5) = "D_ROGAR"
+		
+		for i = 1 to 5
+			.CreateLayer hamTBK(i), rgb(0,0,0)	
+		Next		
+	end with
+End Function
