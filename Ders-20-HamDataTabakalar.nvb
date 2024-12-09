@@ -1,0 +1,48 @@
+'Yazan Hüseyin Safa DUMAN
+'Tarih 22.04.2024 18:25:49
+'Aciklama Ham Data katmanlarýn otomatik oluþturulmasý.
+
+Sub Main
+	Call hamTabaka()
+End Sub
+
+
+Function hamTabaka()
+	Dim hamTBK(18), i
+	with Netcad
+		
+		hamTBK(1) = "@D"
+		hamTBK(2) = "D_YOL"
+		hamTBK(3) = "D_EKSEN"
+		hamTBK(4) = "D_DUVAR"
+		hamTBK(5) = "D_YAPI"
+		hamTBK(6) = "D_DIREK_ELEKTRIK"
+		hamTBK(7) = "D_DIREK_AYDINLATMA"
+		hamTBK(8) = "D_DIREK_TELEFON"
+		hamTBK(9) = "D_ROGAR"
+		hamTBK(10) = "D_ENKAZ_ALANI"
+		hamTBK(11) = "D_KAPI"
+		hamTBK(12) = "D_KALDIRIM"
+		hamTBK(13) = "D_BETON_ZEMIN"
+		hamTBK(14) = "D_TASKIN"
+		hamTBK(15) = "D_TARAMA"
+		hamTBK(16) = "D_HAVUZ"
+		hamTBK(17) = "D_TEL_CIT"
+		hamTBK(18) = "D_YAPI_TARAMA"
+		
+		
+		
+		for i = 1 to 18
+		
+			If i = 3 Then
+				.CreateLayer hamTBK(i), rgb(0,0,255)
+			elseIf i = 15 Then
+				.CreateLayer hamTBK(i), rgb(0,255,0)
+			Else
+				.CreateLayer hamTBK(i), rgb(255,255,255)
+			End if
+			
+		Next	
+		
+	end with
+End Function
